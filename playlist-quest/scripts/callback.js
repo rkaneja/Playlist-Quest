@@ -1,6 +1,7 @@
 function getAccessToken() {
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
+    console.log(params.get("access_token"));
     return params.get("access_token");
 }
 
