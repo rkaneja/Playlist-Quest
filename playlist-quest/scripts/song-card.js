@@ -1,3 +1,11 @@
+/**
+ * Grab a user's top songs using the Spotify API
+ * 
+ * @param {*} accessToken the access token, usually passed in as localStorage.get("spotify_access_token")
+ * @param {*} limit the maximum number of top songs to pull for a user
+ * @param {*} offset the number of top songs to skip, this will default to 0 (starting with most played song) 
+ * @returns an array to top songs for a use 
+ */
 async function fetchTopSongs(accessToken, limit = 6, offset = 0) {
     const url = `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&offset=${offset}`;
     const headers = {
@@ -7,11 +15,17 @@ async function fetchTopSongs(accessToken, limit = 6, offset = 0) {
     const response = await fetch(url, {
         headers
     });
+    console.log(response);
+
     const data = await response.json();
     console.log(data.items);
     return data.items;
 }
 
+/**
+ * 
+ * @param {*} song 
+ */
 function displaySongCard(song) {
     const songCard = document.getElementById("albumStuff")
     songCard.innerHTML = '';
@@ -39,6 +53,9 @@ let topSongs;
 let playlist = [];
 let pSize = 0;
 
+/**
+ * 
+ */
 async function displayNextSong() {
     if (currentSongIndex < topSongs.length) {
         audioPlayer.pause();
@@ -52,6 +69,9 @@ async function displayNextSong() {
     }
 }
 
+/**
+ * Display the user's top songs
+ */
 async function displayUserTopSongs() {
     const accessToken = localStorage.getItem("spotify_access_token");
 
@@ -59,17 +79,31 @@ async function displayUserTopSongs() {
         topSongs = await fetchTopSongs(accessToken);
         displayNextSong();
     } else {
-        alert("Please log in with Spotify to view your top songs.");
-        window.location.href = "index.html";
+        displayAndRedirectUnauthUsers();
     }
 }
 
+/**
+ * 
+ */
 function addToPlaylist() {
     if (currentSongIndex < topSongs.length) {
         playlist[pSize] = topSongs[currentSongIndex];
         pSize++;
     }
     displayNextSong();
+}
+
+/**
+ * This function redirect's user's who cannot be authorized using
+ * the spotify API token in localStorage.
+ * 
+ * This function displays an error message and redirects the users back
+ * to the main page
+ */
+function displayAndRedirectUnauthUsers() {
+    alert("Please log in with Spotify to view your top songs.");
+    window.location.href = "index.html";
 }
 
 async function getRecommendations(songs, accessToken) {
