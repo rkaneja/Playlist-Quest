@@ -7,7 +7,7 @@
  * @returns an array to top songs for a use 
  */
 async function fetchTopSongs(accessToken, limit = 6, offset = 0) {
-    const url = `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&offset=${offset}`;
+    const url = `https://api.spotify.com/v1/me/top/tracks?limit=${limit}&offset=${offset}&time_range=long_term`;
     const headers = {
         "Authorization": `Bearer ${accessToken}`
     };
@@ -74,7 +74,7 @@ async function displayNextSong() {
  */
 async function displayUserTopSongs() {
     const accessToken = localStorage.getItem("spotify_access_token");
-
+    console.log(accessToken);
     if (accessToken) {
         topSongs = await fetchTopSongs(accessToken);
         displayNextSong();
