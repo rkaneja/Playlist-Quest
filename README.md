@@ -14,3 +14,8 @@ This project is still in development
 [ ] Add Swiping animation to song card
 [ ] Preview the playlist in a prettier window
 [ ] Add keyboard (left and right) arrow support for adding or rejecting songs
+
+# Ideas
+- Swipe left or right on mobile
+- Show number of songs currently in playlist
+- Pause song preview
