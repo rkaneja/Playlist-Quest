@@ -7,8 +7,7 @@ const InfoPage: React.FC = () => {
 
   return (
     <div>
-      <h1>About Page</h1>
-      <p>Welcome to the about page!</p>
+      <h1>Info Page</h1>
     </div>
   );
 };

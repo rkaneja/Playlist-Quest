@@ -7,8 +7,8 @@ const LandingPage: React.FC = () => {
       <h1>Home Page</h1>
       <p>Welcome to the home page!</p>
       <ul>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/info">App Info</Link></li>
+        <li><Link to="/about">About Us</Link></li>
       </ul>
     </div>
   );
