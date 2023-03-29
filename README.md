@@ -19,3 +19,8 @@ This project is still in development
 - Swipe left or right on mobile
 - Show number of songs currently in playlist
 - Pause song preview
+ ```
+SELECT * 
+WHERE column EQUALS 0
+FROM bigTable
+````
