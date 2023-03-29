@@ -1,5 +1,5 @@
 import App from './App';
-import './styles/index.css';
+import './styles/main.css';
 import reportWebVitals from "./reportWebVitals";
 
 import { StrictMode } from "react";
