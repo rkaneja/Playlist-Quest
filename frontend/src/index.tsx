@@ -1,10 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import './styles/index.css';
+import reportWebVitals from "./reportWebVitals";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+const rootElement = document.getElementById("root");
+
+// Check that the rootElement is not null
+if (rootElement) {
+  const root = createRoot(rootElement);
+
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+}
+
+reportWebVitals();
