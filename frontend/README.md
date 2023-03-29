@@ -1,16 +1,31 @@
 # Playlsit Quest Frontend
 This is the frontend source code for the react application powering Playlist-Quest.
 
-# Getting Starte`
-## Project Dependencies
+# README contents
+1. [Getting Started](#getting-started)
+   * [Project Resources](#install-npm-dependencies)
+   * [Available Scripts](#available-scripts)
+2. [File Structure](#file-structure)
+
+# Getting Started
+## Project Resources
 | Dependency | Version | Date Updated |
 | -------- | -------- | -------- |
-| React | 18.2.0 | March 28, 2023 |
-| NodeJS | | |
+| React | v18.2.0 | March 28, 2023 |
+| NodeJS | v18.12.1 | March 28, 2023 |
+| NPM | v8.19.2 | March 28, 2023 |
 
+## Install NPM Dependencies
+Before you can run the application, you must install all of the required packages. Run the following code:
+```(bash)
+cd frontend
+npm install
+```
 
 ## Available Scripts
-### `npm start`markdown.preview.fontFamily
+Once you have installed the npm packages, you can run the following scripts:
+
+### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
