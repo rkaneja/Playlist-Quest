@@ -2,8 +2,7 @@ import React from 'react';
 
 const LoginPage = () => {
     function handleLoginClick() {
-        // Add your logic here for when the "Login" button is clicked
-        const clientId = '3f7e3ab2ed184531811ffd9eb4db0c4c';
+        const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
         // const redirectUri = "https://rkaneja.github.io/Playlist-Quest/callback.html";
         const redirectUri = "http://localhost:3000/callback";
         const scopes = encodeURIComponent("user-top-read playlist-modify-private");
