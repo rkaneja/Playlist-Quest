@@ -48,8 +48,8 @@ function GamePage() {
                 },
             });
             const data = await response.json();
-            console.log(data.tracks);
-            let songData = data.tracks[0];
+            // console.log(data.tracks);
+            // let songData = data.tracks[0];
             setList(data.tracks);
             // setSong({image: songData.album.images[0].url, title: songData.name, artist: songData.artists[0].name});
         }
