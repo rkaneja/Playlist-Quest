@@ -34,6 +34,10 @@ function GamePage() {
         fetchData();
 
     }, []);
+    const removeSong = (id) => {
+        console.log("Removing song with id: ", id)
+        setPlaylist(playlist.filter(song => song.id !== id));
+    }
     function generateNewList() {
         let token = window.localStorage.getItem('spotify_access_token');
         let seeds = playlist.slice(-5).map(song => song.id);
@@ -46,8 +50,8 @@ function GamePage() {
             const data = await response.json();
             console.log(data.tracks);
             let songData = data.tracks[0];
-            setList(data.items);
-            setSong({image: songData.album.images[0].url, title: songData.name, artist: songData.artists[0].name});
+            setList(data.tracks);
+            // setSong({image: songData.album.images[0].url, title: songData.name, artist: songData.artists[0].name});
         }
         fetchData();
     }
@@ -55,20 +59,25 @@ function GamePage() {
         let song = {image: list[0].album.images[0].url, title: list[0].name, artist: list[0].artists[0].name, id: list[0].id};
         if (list.length === 1) {
             generateNewList();
+        }else {
+            let nextSong = {image: list[0].album.images[0].url, title: list[0].name, artist: list[0].artists[0].name, id: list[0].id};
+            setSong(nextSong);
+            setList([...list].splice(1));
+            setPlaylist([...playlist, song]);
+            // console.log("remaining songs:")
+            // console.log(list.length - 1);
         }
-        let nextSong = {image: list[0].album.images[0].url, title: list[0].name, artist: list[0].artists[0].name, id: list[0].id};
-        setSong(nextSong);
-        setList([...list].splice(1));
-        setPlaylist([...playlist, song]);
     }
     function handleSkipClick() {
         if (list.length === 1) {
             generateNewList();
+        }else {
+            let nextSong = {image: list[0].album.images[0].url, title: list[0].name, artist: list[0].artists[0].name, id: list[0].id};
+            setSong(nextSong);
+            setList([...list].splice(1));
+            // console.log("remaining songs:")
+            // console.log(list.length - 1);
         }
-        let nextSong = {image: list[0].album.images[0].url, title: list[0].name, artist: list[0].artists[0].name, id: list[0].id};
-        setSong(nextSong);
-        setList([...list].splice(1));
-        console.log(nextSong);
     }
   return (
     <div className='flex flex-col items-center bg-slate-500 w-screen h-screen'>
@@ -79,7 +88,7 @@ function GamePage() {
             <button className='bg-transparent border text-white mx-9 p-2 rounded-lg text-2xl h-max w-1/6' onClick={handleAddClick}>Add to Playlist</button>
         </div>
         <button className='bg-transparent border text-white mx-9 p-2 rounded-lg text-2xl h-max w-1/6' onClick={toggleOverlay}>View Playlist</button>
-        <Playlist isVisible={isOverlayVisible} onClose={toggleOverlay} songs={playlist} />
+        <Playlist isVisible={isOverlayVisible} onClose={toggleOverlay} songs={playlist} onRemoveSong={removeSong}/>
         
     </div>
   );

@@ -21,5 +21,5 @@ Instructions on how to use the project.
 
 ## TODO
 
-- [ ] Fix bug for getting more songs
-- [ ] Make the export playlist closable
+- [ ] implement refresh tokens (useEffect() in developement mode makes it hard)
+- [ ] add page for seeds before game starts

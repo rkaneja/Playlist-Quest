@@ -1,6 +1,10 @@
 import React from 'react';
+import IosShareIcon from '@mui/icons-material/IosShare';
+import CloseIcon from '@mui/icons-material/Close';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { blue } from '@mui/material/colors';
 
-const Playlist = ({isVisible, onClose, songs}) => {
+const Playlist = ({isVisible, onClose, songs, onRemoveSong}) => {
     if (!isVisible) return null;
     async function getCurrentUser(accessToken) {
             const url = 'https://api.spotify.com/v1/me';
@@ -68,9 +72,10 @@ const Playlist = ({isVisible, onClose, songs}) => {
         <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Playlist</h3>
-                <button className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500" onClick={handleExportClick}>
-                    Export Playlist
-                </button>
+                <div className='align-right space-x-2'>
+                    <IosShareIcon style={{color: blue[600]}} onClick={handleExportClick} className='cursor-pointer'></IosShareIcon>
+                    <CloseIcon style={{color: blue[600]}} onClick={onClose} className="cursor-pointer"></CloseIcon>
+                </div>
             </div>
             <div className="flow-root overflow-y-auto h-5/6">
                 <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -88,10 +93,8 @@ const Playlist = ({isVisible, onClose, songs}) => {
                                 {song.artist}
                             </p>
                             </div>
-                            <div className="flex-shrink-0">
-                            <button className="font-medium text-blue-600 hover:underline dark:text-blue-500">
-                                Remove
-                            </button>
+                            <div className="flex-shrink-0 pr-2">
+                            <RemoveCircleOutlineIcon style={{color: blue[600]}} onClick={() => onRemoveSong(song.id)} className="cursor-pointer"></RemoveCircleOutlineIcon>
                             </div>
                         </div>
                         </li>
